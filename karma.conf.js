@@ -7,11 +7,11 @@ module.exports = function (config) {
       preprocessors: {
         'src/test.ts': ['@angular-devkit/build-angular']
       },
-      browsers: ['Chrome'],
+      browsers: ['ChromeHeadless'],
       mime: {
         'text/javascript': ['js', 'mjs']
       },
-      singleRun: false,
+      singleRun: true,
       restartOnFileChange: true
     });
   };

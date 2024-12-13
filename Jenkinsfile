@@ -9,24 +9,26 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Commandes pour construire votre projet Angular
+                    // Construire votre projet Angular dans le conteneur Docker
                     sh 'npm install'
                     sh 'npm run build --prod'
                 }
             }
         }
+
         stage('Test') {
             steps {
                 script {
-                    // Commandes pour exécuter les tests
+                    // Exécuter les tests avec Karma dans Docker
                     sh 'npm test'
                 }
             }
         }
+
         stage('Deploy') {
             steps {
                 script {
-                    // Commandes pour déployer votre application
+                    // Déployer l'application
                     sh 'npm run deploy'
                 }
             }
