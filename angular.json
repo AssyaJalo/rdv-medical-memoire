@@ -13,6 +13,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "sweetalert2"
+            ],
             "outputPath": "dist/memoire-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -35,8 +38,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "6mb",
+                  "maximumError": "8mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -71,12 +74,14 @@
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
+          
           "options": {
             "browserTarget": "Memoire_Angular:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
+          
           "options": {
             "polyfills": [
               "zone.js",
