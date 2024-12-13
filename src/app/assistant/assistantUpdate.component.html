@@ -1,0 +1,81 @@
+
+<div class="modal-header bg-primary ">
+  <h2 class="modal-title text-center w-100">Ajouter un assistant</h2> <!-- Titre centré -->
+  <button type="button" class="btn-close" (click)="closeAddAssistantModal()"></button>
+</div>
+
+
+<div class="container d-flex justify-content-center mt-5" style="width: 100%;">
+  <div class="col-md-12">
+    <form action="" [formGroup]="assistantForm" (ngSubmit)="AddAssistant()" class="p-4 border rounded shadow">
+      
+      <!-- Ligne pour Nom et Prénom -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="nom" class="form-label">Nom:</label>
+          <input type="text" class="form-control" id="nom" formControlName="nom">
+          <div *ngIf="assistantForm.controls.nom.errors && veriform" class="text-danger">
+            * nom obligatoire
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="prenom" class="form-label">Prénom:</label>
+          <input type="text" class="form-control" id="prenom" formControlName="prenom">
+          <div *ngIf="assistantForm.controls.prenom.errors && veriform" class="text-danger">
+            * prénom obligatoire
+          </div>
+        </div>
+      </div>
+
+      <!-- Ligne pour Email et Téléphone -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="email" class="form-label">Email:</label>
+          <input type="email" class="form-control" id="email" formControlName="email">
+          <div *ngIf="assistantForm.controls.email.errors && veriform" class="text-danger">
+            * email obligatoire
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="telephone" class="form-label">Téléphone:</label>
+          <input type="text" class="form-control" id="telephone" formControlName="telephone">
+          <div *ngIf="assistantForm.controls.telephone.errors && veriform" class="text-danger">
+            * téléphone obligatoire
+          </div>
+        </div>
+      </div>
+
+      <!-- Date de Naissance -->
+      <div class="mb-3">
+        <label for="dateNaiss" class="form-label">Date de Naissance:</label>
+        <input type="date" class="form-control" id="dateNaiss" formControlName="dateNaiss">
+        <div *ngIf="assistantForm.controls.dateNaiss.errors && veriform" class="text-danger">
+          * date de naissance obligatoire
+        </div>
+      </div>
+
+      <!-- Ligne pour Password et Confirm Password -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="password" class="form-label">Password:</label>
+          <input type="password" class="form-control" id="password" formControlName="password">
+          <div *ngIf="assistantForm.controls.password.errors && veriform" class="text-danger">
+            * mot de passe obligatoire et doit contenir au moins 8 caractères
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="password_confirmation" class="form-label">Confirm Password:</label>
+          <input type="password" class="form-control" id="password_confirmation" formControlName="password_confirmation">
+          <div *ngIf="veriform && assistantForm.hasError('mismatch')" class="text-danger">
+            * les mots de passe ne correspondent pas
+          </div>
+        </div>
+      </div>
+
+      <!-- Boutons -->
+      <button type="submit" class="btn btn-outline-primary me-2">Enregistrer</button>
+      <button type="button" class="btn btn-outline-danger">Annuler</button>
+
+    </form>
+  </div>
+</div>

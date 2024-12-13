@@ -1,0 +1,40 @@
+<div class="background d-flex align-items-center justify-content-center" style="height: 70vh; background-image: url('assets/images/your-image.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+  <div class="card border border-primary shadow p-4" style="width: 70%; max-width: 800px; border-radius: 10px; background-color: rgba(255, 255, 255, 0.7);">
+    <div class="row w-100">
+      
+      <!-- Section de l'image -->
+      <div class="col-md-6 d-flex justify-content-center align-items-center">
+        <img src="assets/images/bb1.png" alt="Login Image" class="img-fluid" style="max-width: 100%; height: 200px; border-radius: 10px;">
+      </div>
+      
+      <!-- Section du formulaire -->
+      <div class="col-md-6 d-flex justify-content-center align-items-center">
+        <form [formGroup]="loginForm" (ngSubmit)="login()" style="width: 100%; max-width: 400px;">
+          <div class="mb-4">
+            <label for="exampleInputEmail1" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="email" required>
+          </div>
+          <div *ngIf="veriform && loginForm.controls['email'].errors">
+            <span class="text-danger">* Email invalide</span>
+          </div>
+          
+          <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" class="form-control" id="password" formControlName="password" required>
+          </div>
+          <div *ngIf="veriform && loginForm.controls['password'].errors">
+            <span class="text-danger">* Password invalide</span>
+          </div>
+          
+          <button class="btn btn-outline-primary me-2">Login</button>
+          <a class="btn btn-outline-warning" routerLink="/register">Register</a>
+        </form>
+        
+        <div *ngIf="errorMessage" class="mt-3">
+          <span class="text-danger">{{ errorMessage }}</span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>

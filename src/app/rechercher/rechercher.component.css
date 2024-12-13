@@ -1,0 +1,78 @@
+/* Spécificité plus élevée pour s'assurer que les styles sont appliqués */
+.navbar-nav .nav-item .accueil-link {
+    color: #0d6efd;
+    font-weight: bold;
+    
+}
+
+.navbar-nav .nav-item .a-propos-link {
+    color: #0d6efd !important;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-item .contact-link {
+    color: #0d6efd !important;
+    font-weight: bold;
+}
+
+
+/* Effet au survol */
+.navbar-nav .nav-item .nav-link:hover {
+    color: #dcbf01 !important; /* Couleur au survol */
+    background-color: #0d6efd; /* Optionnel : couleur de fond au survol */
+    border-radius: 5px; 
+}
+
+/* Style pour la bordure de la barre de navigation */
+.navbar-border {
+    border: 1px solid #8a88f8; /* Couleur et épaisseur de la bordure */
+    border-radius: 10px; /* Coins arrondis */
+    padding: 2px; /* Espace intérieur pour un aspect aéré */
+    margin: 5px; /* Espace extérieur pour l'éloigner des autres éléments */
+    opacity: 0.9;
+    box-shadow: 0px 0px 10px 5px rgba(138, 136, 248, 0.5);
+}
+
+/* Si vous souhaitez un effet de surbrillance au survol */
+.navbar-border:hover {
+    box-shadow: 0px 0px 15px 7px rgba(138, 136, 248, 0.7);
+    border-color: #8a88f8; /* Couleur de bordure au survol */
+    opacity: 2;
+}
+
+.hero-section{
+    border: 1px solid #8a88f8; /* Couleur et épaisseur de la bordure */
+    border-radius: 10px; /* Coins arrondis */
+    padding: 2px; /* Espace intérieur pour un aspect aéré */
+    margin: 5px; /* Espace extérieur pour l'éloigner des autres éléments */
+    opacity: 0.9;
+    box-shadow: 0px 0px 10px 5px rgba(138, 136, 248, 0.5);
+
+}
+.hero-section:hover{
+    box-shadow: 0px 0px 15px 7px rgba(138, 136, 248, 0.7);
+    border-color: #8a88f8; /* Couleur de bordure au survol */
+    opacity: 2;
+
+}
+.btn{
+    padding: 10px 20px; 
+    font-size: 16px;
+     border-color: #8a88f8;
+    border-radius: 10px;  color: white; 
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.icon-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: white;
+    color: #007bff;
+    font-size: 18px;
+}
+

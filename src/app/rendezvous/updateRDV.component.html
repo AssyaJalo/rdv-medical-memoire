@@ -1,0 +1,38 @@
+<div class="container d-flex justify-content-center mt-5">
+    <div class="col-md-6">
+      <form [formGroup]="rdvForm" (ngSubmit)="addRDV()" class="p-4 border rounded shadow">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="medecin_id" class="form-label">Medecin:</label>
+              <select id="medecin_id" formControlName="medecin_id" class="form-control">
+                <option *ngFor="let medecin of medecins" [value]="medecin.id">{{ medecin.user?.prenom }} {{medecin.user?.nom}}</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="patient_id" class="form-label">Patient:</label>
+              <select id="patient_id" formControlName="patient_id" class="form-control">
+                <option *ngFor="let patient of patients" [value]="patient.id">{{ patient.user?.prenom }} {{ patient.user?.nom }}</option>
+              </select>
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="dateNaiss" class="form-label">Date RDV:</label>
+            <input type="date" class="form-control" id="DateRdv" formControlName="DateRdv">
+            <div *ngIf="rdvForm.controls.DateRdv.errors && veriform" class="text-danger">
+              * Date RDV obligatoire
+            </div>
+          </div>
+         
+            
+  
+
+        
+  
+        <!-- Boutons -->
+        <button type="submit" class="btn btn-outline-primary me-2" >Enregistrer</button>
+        <button type="button" class="btn btn-outline-danger">Annuler</button>
+      </form>
+    </div>
+  </div>
+  

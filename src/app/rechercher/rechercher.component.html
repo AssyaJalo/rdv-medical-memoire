@@ -1,0 +1,124 @@
+<nav class="navbar navbar-expand-lg navbar-dark navbar-border">
+  <div class="container-fluid">
+      <a class="navbar-brand mx-auto" href="">
+        <img src="assets/images/logo.png" alt="Icon" style="height: 50px; width: 50; margin-right: 8px;">
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link active accueil-link" aria-current="page" href="">Accueil</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link a-propos-link" href="">Services</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link contact-link" href="">Actualites</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link contact-link" href="">Contact</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link contact-link" href="">A Propos</a>
+              </li>
+          </ul>
+          <ul class="navbar-nav">
+              <li class="nav-item ms-auto">
+                  <a class="nav-link font-weight-bold d-flex align-items-center" routerLink="/login">
+                      <span class="icon-circle mx-2">
+                          <i class="fa fa-user" aria-hidden="true"></i>
+                      </span>
+                  </a>
+              </li>
+              <li class="nav-item ms-auto">
+                  <a class="btn btn-primary bolt d-flex align-items-center" routerLink="/rdv">
+                      <i class="fas fa-calendar-check" style="margin-right: 8px;"></i> Prendre Rendez-vous
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</nav>
+
+<section class="hero-section" style="margin-top: 20px; background-image: url('/assets/images/dj.jpg'); background-size: cover; background-repeat: no-repeat; background-position: center; height: 450px; display: flex; align-items: flex-end; justify-content: center;">
+  <div style="text-align: center; margin-bottom: 30px;">
+      <form (submit)="rechercher()" style="display: flex; justify-content: center; margin-bottom: 20px;">
+          <input type="text" [(ngModel)]="query" placeholder="Rechercher..." class="form-control" name="query" style="width: 300px; border-radius: 20px; padding: 10px;">
+          <button type="submit" class="btn btn-primary" style="margin-left: 10px; border-radius: 20px;">
+              Rechercher
+          </button>
+      </form>
+  </div>
+</section>
+
+<div *ngIf="medecins.length > 0">
+    <h3></h3>
+    <div class="row justify-content-center">
+        <div *ngFor="let medecin of medecins" class="col-md-8">
+            <!-- Card -->
+            <div class="card">
+                <!-- Image du médecin -->
+                <img [src]="'http://127.0.0.1:8000/' + medecin.photo" class="card-img-top" alt="">
+                <div class="card-body">
+                    <!-- Informations sur le médecin avec d-flex pour aligner les éléments sur la même ligne -->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="card-text"><strong>Nom:</strong> {{ medecin.user.nom }}</p>
+                            <p class="card-text"><strong>Prenom:</strong> {{ medecin.user.prenom }}</p>
+                            <p class="card-text"><strong>Spécialité:</strong> {{ medecin.specialite.Nom_Specialite }}</p>
+                        </div>
+                        <div>
+                            <button class="btn btn-warning"  style="border-radius: 20px;" routerLink="/rdv">
+                                Prendre rendez-vous
+                            </button>
+                        </div>
+                    </div>
+            
+                    <br>
+                    <br>
+                    <br>
+                    <div>
+                        <h1 class="text-center bg-primary" style="border-radius: 20px; color:#eee">Agenda du medecin</h1>
+                        <table class="table table-striped table-bordered table-sm text-center">
+                       
+                            <thead>
+                                <tr>
+                                    <th scope="col">Jour</th>
+                                    <th scope="col">heure-debut</th>
+                                    <th scope="col">heure-fin</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Actions</th>
+                                  
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let dispo of medecin.disponibilites">
+                                    <td>{{ dispo.JourDisponible }}</td>
+                                    <td>{{ dispo.HeureDebut }}</td>
+                                    <td>{{ dispo.HeureFin }}</td>
+                                    <td>{{ dispo.dateDisponible }}</td>
+                                    <td>
+                                        <button class="btn btn-outline-warning"  style="border-radius: 20px; color:black"
+                                        (click)="prendreRendezVous(medecin, dispo)">
+                                            Choisir
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <!-- Tableau des disponibilités -->
+                   
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="errorMessage">
+    <p class="text-danger">{{ errorMessage }}</p>
+</div>
+
+
+

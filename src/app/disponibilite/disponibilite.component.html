@@ -1,0 +1,14 @@
+<div class="container d-flex justify-content-center mt-2">
+  <div style="width: 100%; max-width: 900px;">
+    <!-- Bouton Ajouter aligné en haut -->
+    <div class="d-flex justify-content-start mb-3" routerLink="/addDisponibilite">
+      <button class="btn btn-outline-success btn-sm">
+        <i class="fas fa-plus-circle"></i>
+      </button>
+    </div>
+
+    <!-- Calendrier FullCalendar -->
+    <full-calendar [options]="calendarOptions"></full-calendar>
+
+  </div>
+</div>

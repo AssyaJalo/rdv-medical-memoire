@@ -1,0 +1,31 @@
+<div class="container d-flex justify-content-center mt-5">
+    <div class="col-md-6">
+      <form action="" [formGroup]="specialiteForm " (ngSubmit)="EditSpecialite()" class="p-4 border rounded shadow">
+        
+        <!-- Ligne pour Nom et Prénom -->
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="nom" class="form-label">Nom_Specialite:</label>
+            <input type="text" class="form-control" id="Nom_Specialite" formControlName="Nom_Specialite">
+            <div *ngIf="specialiteForm.controls.Nom_Specialite.errors && veriform" class="text-danger">
+              * Nom_Specialite obligatoire
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="prenom" class="form-label">Experience_Specialite:</label>
+            <input type="text" class="form-control" id="Experience_Specialite" formControlName="Experience_Specialite">
+            <div *ngIf="specialiteForm.controls.Experience_Specialite.errors && veriform" class="text-danger">
+              * Experience_Specialite obligatoire
+            </div>
+          </div>
+        </div>
+  
+      
+        <!-- Boutons -->
+        <button type="submit" class="btn btn-outline-primary me-2">Enregistrer</button>
+        <button type="button" class="btn btn-outline-danger">Annuler</button>
+  
+      </form>
+    </div>
+  </div>
+  

@@ -1,0 +1,17 @@
+/* Classe par défaut des événements */
+.fc-event {
+    cursor: pointer;
+  }
+  
+  /* Couleur des événements non sélectionnés */
+  .fc-event.blue-event {
+    background-color: #5a9bd5; /* Bleu clair */
+    color: white;
+  }
+  
+  /* Couleur des événements sélectionnés */
+  .fc-event.selected-event {
+    background-color: #4CAF50; /* Vert */
+    color: white;
+  }
+  

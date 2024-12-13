@@ -1,0 +1,96 @@
+
+<div class="container d-flex justify-content-center mt-5">
+  <div class="col-md-6">
+    <form [formGroup]="medecinForm" (ngSubmit)="updateMedecin()" class="p-4 border rounded shadow">
+      
+      <!-- Ligne pour Nom et Prénom -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="nom" class="form-label">Nom:</label>
+          <input type="text" class="form-control" id="nom" formControlName="nom">
+          <div *ngIf="medecinForm.controls.nom.errors && veriform" class="text-danger">
+            * Nom obligatoire
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="prenom" class="form-label">Prénom:</label>
+          <input type="text" class="form-control" id="prenom" formControlName="prenom">
+          <div *ngIf="medecinForm.controls.prenom.errors && veriform" class="text-danger">
+            * Prénom obligatoire
+          </div>
+        </div>
+      </div>
+
+      <!-- Ligne pour Email et Téléphone -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="email" class="form-label">Email:</label>
+          <input type="email" class="form-control" id="email" formControlName="email">
+          <div *ngIf="medecinForm.controls.email.errors && veriform" class="text-danger">
+            * Email obligatoire
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="telephone" class="form-label">Téléphone:</label>
+          <input type="text" class="form-control" id="telephone" formControlName="telephone">
+          <div *ngIf="medecinForm.controls.telephone.errors && veriform" class="text-danger">
+            * Téléphone obligatoire
+          </div>
+        </div>
+      </div>
+
+      <!-- Date de Naissance et Photo alignés -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="dateNaiss" class="form-label">Date de Naissance:</label>
+          <input type="date" class="form-control" id="dateNaiss" formControlName="dateNaiss">
+          <div *ngIf="medecinForm.controls.dateNaiss.errors && veriform" class="text-danger">
+            * Date de naissance obligatoire
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="photo" class="form-label">Photo:</label>
+          <input id="photo" type="file" class="form-control" (change)="onFileSelected($event)" />
+        </div>
+      </div>
+
+      <!-- Spécialité et Assistant alignés -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="specialite_id" class="form-label">Spécialité:</label>
+          <select id="specialite_id" formControlName="specialite_id" class="form-control">
+            <option *ngFor="let specialite of specialites" [value]="specialite.id">{{ specialite.Nom_Specialite }}</option>
+          </select>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="assistant_id" class="form-label">Assistant:</label>
+          <select id="assistant_id" formControlName="assistant_id" class="form-control">
+            <option *ngFor="let assistant of assistants" [value]="assistant.id">{{ assistant.user?.prenom }} {{ assistant.user?.nom }}</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Ligne pour Password et Confirm Password -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="password" class="form-label">Mot de Passe:</label>
+          <input type="password" class="form-control" id="password" formControlName="password">
+          <div *ngIf="medecinForm.controls.password.errors && veriform" class="text-danger">
+            * Mot de passe obligatoire et doit contenir au moins 8 caractères
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="password_confirmation" class="form-label">Confirmer le Mot de Passe:</label>
+          <input type="password" class="form-control" id="password_confirmation" formControlName="password_confirmation">
+          <div *ngIf="veriform && medecinForm.hasError('mismatch')" class="text-danger">
+            * Les mots de passe ne correspondent pas
+          </div>
+        </div>
+      </div>
+
+      <!-- Boutons -->
+      <button type="submit" class="btn btn-outline-primary me-2" >Enregistrer</button>
+      <button type="button" class="btn btn-outline-danger">Annuler</button>
+    </form>
+  </div>
+</div>

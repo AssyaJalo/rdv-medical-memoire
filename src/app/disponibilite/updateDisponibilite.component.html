@@ -1,0 +1,28 @@
+<div class="modal-header bg-primary ">
+  <h2 class="modal-title text-center w-100">Ajouter une disponibilite</h2> <!-- Titre centré -->
+  <button type="button" class="btn-close" (click)="closeModal()"></button>
+</div>
+    <div class="modal-body">
+      <form [formGroup]="disponibiliteForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="HeureDebut">Heure de début</label>
+          <input type="time" formControlName="HeureDebut" id="HeureDebut" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="HeureFin">Heure de fin</label>
+          <input type="time" formControlName="HeureFin" id="HeureFin" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="dateDisponible">Date Disponible</label>
+          <input type="date" formControlName="dateDisponible" id="dateDisponible" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="JourDisponible">Jour Disponible</label>
+          <input type="texte" formControlName="JourDisponible" id="JourDisponible" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary me-2">Ajouter</button>
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+      </form>
+    </div>
+  
+

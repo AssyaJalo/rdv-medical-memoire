@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Medical Appointment Dashboard</title>
+    
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <input type="checkbox" id="menu-toggle">
+    <div class="sidebar">
+        <div class="side-header">
+			<img src="assets/images/logo.png" alt="Logo">
+            <!-- <h3>Medical <span>Dashboard</span></h3> -->
+        </div>
+        
+        <div class="side-content">
+
+            <div class="side-menu">
+                <ul>
+                    <li>
+                       <a href="" class="active">
+                            <span class="las la-home"></span>
+                            <small>Dashboard</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a  (click)="showMedecinsSection()">
+                            <span class="las la-user-md"></span>
+                            <small>Medecins</small>
+                        </a>
+                    </li>
+                    <li>
+                       <a (click)="showAssistantSection()">
+                            <span class="las la-user-nurse"></span>
+                            <small>Assistants</small>
+                        </a>
+                    </li>
+                    <li>
+                       <a (click)="showPatientSection()">
+                            <span class="las la-users"></span>
+                            <small>Patients</small>
+                        </a>
+                    </li>
+                    <li>
+                       <a (click)="showDisponibiliteSection()" >
+                            <span class="las la-calendar-alt"></span>
+                            <small>Agenda</small>
+                        </a>
+                    </li>
+                    <li>
+                       <a  (click)="showRDVSection()">
+                            <span class="las la-calendar-check"></span>
+                            <small>Rendez-vous</small>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-content ">
+        
+        <header>
+            <div class="header-content">
+                <label for="menu-toggle">
+                    <span class="las la-bars"></span>
+                </label>
+                
+                <div class="header-menu">
+                    <label for="">
+                        <span class="las la-search"></span>
+                    </label>
+                    
+                    <div class="notify-icon">
+                        <span class="las la-envelope"></span>
+                        <span class="notify">4</span>
+                    </div>
+                    
+                    <div class="notify-icon">
+                        <span class="las la-bell"></span>
+                        <span class="notify">3</span>
+                    </div>
+                    
+                    <div class="user"  (click)="logout()">
+                        <div class="bg-img" style="background-image: url(assets/images/ad.png)"></div>
+                        <span class="las la-power-off"></span>
+                        <span>Logout</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <main class="mb-6">
+
+
+          
+            <div *ngIf="showMedecins" class="container d-flex justify-content-center mt-2 mb-3">
+                <div style="width: 100%; max-width: 900px;">
+              
+                    <!-- Barre de recherche et Bouton Ajouter alignés -->
+                    <div class="d-flex justify-content-between mb-3">
+                        <!-- Formulaire de recherche à gauche -->
+                        <form class="d-flex" role="search">
+                          <input class="form-control me-2 form-control" type="search" placeholder="Rechercher" aria-label="Search">
+                          <button class="btn btn-outline-warning" type="submit">Rechercher</button>
+                        </form>
+                
+                        <!-- Bouton Ajouter aligné à droite -->
+                        <button class="btn btn-success btn-sm border-0 fa-lg" (click)="openAddModal()">
+                          <i class="fas fa-plus-circle"></i>
+                          <span class="text"></span>
+                        </button>
+                        
+                    </div>
+            
+                    <!-- Espacement entre le formulaire et le tableau -->
+                    <div class="mt-4"> <!-- Ajout de la marge ici -->
+              
+                        <!-- Table -->
+                        <table class="table table-striped table-bordered table-sm text-center">
+                          <thead>
+                            <tr class="text-center">
+                              <th scope="col" style="width: 5%;">#</th>
+                              <th scope="col" style="width: 20%;" >Nom</th>
+                              <th scope="col" style="width: 20%;">Email</th>
+                              <th scope="col" style="width: 15%;">Specialite</th>
+                              <th scope="col" style="width: 20%;">Assistant</th>
+                              <th scope="col" style="width: 100%;">Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let a of tabMedecin">
+                              <th scope="row">{{a.id}}</th>
+                              <td>{{a.user?.nom}} {{a.user?.prenom}}</td>
+                              <td>{{a.user?.email}}</td>
+                              <td>{{a.specialite?.Nom_Specialite }}</td>
+                              <td>{{a.assistant_nom_prenom}}</td>
+                              
+                              <td>
+                                <button type="button" class="btn btn-outline-primary btn-sm me-2 border-0 fa-lg" [routerLink]="['/editMedecin', a.id]">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button type="button" class="btn btn-outline-warning btn-sm border-0 fa-lg" (click)="deleteMedecin(a.id)">
+                                  <i class="fas fa-trash-alt"></i>
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="showAssistant" class="container d-flex justify-content-center mt-2">
+                <div style="width: 100%; max-width: 900px;">
+                  
+                  <!-- Bouton Ajouter aligné en haut -->
+                  <div class="d-flex justify-content-start mb-3" >
+                    <button class="btn btn-outline-success btn-sm border-0 fa-lg" (click)="openAddAssistantModal()">
+                      <i class="fas fa-plus-circle"></i> 
+                    </button>
+                  </div>
+              
+                  <!-- Table -->
+                  <div>
+                    <table class="table table-striped table-bordered table-sm text-center">
+                      <thead>
+                        <tr>
+                          <th scope="col" style="width: 5%;">#</th>
+                          <th scope="col" style="width: 20%;">Nom</th>
+                          <th scope="col" style="width: 20%;">Prenom</th>
+                          <th scope="col" style="width: 25%;">Email</th>
+                          <th scope="col" style="width: 15%;">Code_Assistant</th>
+                          <th scope="col" style="width: 15%;">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let a of tabAssistant">
+                          <th scope="row">{{a.id}}</th>
+                          <td>{{a.user?.nom}}</td>
+                          <td>{{a.user?.prenom}}</td>
+                          <td>{{a.user?.email}}</td>
+                          <td>{{a.code_Assistant}}</td>
+                          <td>
+                            <button type="button" class="btn btn-outline-primary btn-sm me-2 border-0 fa-lg" [routerLink]="['/editAssistant', a.id]">
+                              <i class="fas fa-edit"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-warning btn-sm border-0 fa-lg" (click)="deleteAssistant(a.id)">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            <div *ngIf="showPatient" class="container d-flex justify-content-center mt-2">
+         <div style="width: 100%; max-width: 900px;">
+      
+      <!-- Bouton Ajouter aligné en haut -->
+      <div class="d-flex justify-content-start mb-3 border-0 fa-lg" routerLink="/addPatient">
+        <button class="btn btn-outline-success btn-sm">
+          <i class="fas fa-plus-circle"></i> 
+        </button>
+      </div>
+  
+      <!-- Table -->
+      <div>
+        <table class="table table-striped table-bordered table-sm text-center">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 5%;">#</th>
+              <th scope="col" style="width: 20%;">Nom</th>
+              <th scope="col" style="width: 20%;">Prenom</th>
+              <th scope="col" style="width: 25%;">Email</th>
+              <th scope="col" style="width: 15%;">Code_Patient</th>
+              <th scope="col" style="width: 15%;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let a of tabPatient">
+              <th scope="row">{{a.id}}</th>
+              <td>{{a.user?.nom}}</td>
+              <td>{{a.user?.prenom}}</td>
+              <td>{{a.user?.email}}</td>
+              <td>{{a.code_Patient}}</td>
+              <td>
+                <button type="button" class="btn btn-outline-primary btn-sm me-2 border-0 fa-lg" [routerLink]="['/editPatient', a.id]">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button type="button" class="btn btn-outline-warning btn-sm border-0 fa-lg" (click)="deletePatient(a.id)">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+              </div>
+            <div *ngIf="showDisponibilite" class="container d-flex justify-content-center mt-2">
+                <div style="width: 100%; max-width: 900px;">
+                  <!-- Bouton Ajouter aligné en haut -->
+                  <div class="d-flex justify-content-start mb-3" routerLink="/addDisponibilite">
+                    <button class="btn btn-outline-success btn-sm">
+                      <i class="fas fa-plus-circle"></i>
+                    </button>
+                  </div>
+              
+                  <!-- Calendrier FullCalendar -->
+                  <full-calendar [options]="calendarOptions"></full-calendar>
+              
+                </div>
+              </div>
+            <div *ngIf="showRDV" class="container d-flex justify-content-center mt-2">
+                <div style="width: 100%; max-width: 900px;">
+                
+                <!-- Bouton Ajouter aligné en haut -->
+                <div class="d-flex justify-content-start mb-3" >
+                    <button class="btn btn-outline-success btn-sm border-0 fa-lg"  routerLink="/addRDV">
+                    <i class="fas fa-plus-circle"></i> 
+                    </button>
+                </div>
+            
+                <!-- Table -->
+                <div>
+                    <table class="table table-striped table-bordered table-sm text-center">
+                    <thead>
+                        <tr>
+                        <th scope="col" style="width: 5%;">#</th>
+                        <th scope="col" style="width: 20%;">Medecin</th>
+                        <th scope="col" style="width: 20%;">Patient</th>
+                        <th scope="col" style="width: 25%;">DateRDV</th>
+                        <th scope="col" style="width: 15%;">Validite</th>
+                        <th scope="col" style="width: 15%;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let a of tabRDV">
+                        <th scope="row">{{a.id}}</th>
+                        <td>{{a.medecin_nom_prenom}}</td>
+                        <td>{{a.patient_nom_prenom}}</td>
+                        <td>{{a.DateRdv}}</td>
+                        <td>{{a.isValided}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-primary btn-sm me-2 border-0 fa-lg">
+                            <i class="fas fa-edit"></i>
+                            </button>
+                            <button type="button" class="btn btn-outline-warning btn-sm border-0 fa-lg" >
+                            <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+              
+  
+  
+              
+            
+
+
+
+
+  
+            
+
+			
+			
+        </main>
+    </div>
+</body>
+</html>
