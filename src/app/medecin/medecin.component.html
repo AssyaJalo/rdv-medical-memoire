@@ -27,9 +27,9 @@
           <tbody>
             <tr *ngFor="let a of tabMedecin">
               <th scope="row">{{a.id}}</th>
-              <td>{{a.user?.nom}} {{a.user?.prenom}}</td>
+              <td>{{a.user.nom}} {{a.user.prenom}}</td>
               <!-- <td>{{a.user?.prenom}}</td> -->
-              <td>{{a.user?.email}}</td>
+              <td>{{a.user.email}}</td>
               <!-- <td>{{a.code_Medecin}}</td> -->
               <td>{{a.specialite?.Nom_Specialite }}</td>
              <td>{{a.assistant_nom_prenom}}</td>

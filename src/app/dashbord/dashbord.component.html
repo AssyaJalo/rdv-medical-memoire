@@ -134,8 +134,8 @@
                           <tbody>
                             <tr *ngFor="let a of tabMedecin">
                               <th scope="row">{{a.id}}</th>
-                              <td>{{a.user?.nom}} {{a.user?.prenom}}</td>
-                              <td>{{a.user?.email}}</td>
+                              <td>{{a.user.nom}} {{a.user.prenom}}</td>
+                              <td>{{a.user.email}}</td>
                               <td>{{a.specialite?.Nom_Specialite }}</td>
                               <td>{{a.assistant_nom_prenom}}</td>
                               
@@ -179,9 +179,9 @@
                       <tbody>
                         <tr *ngFor="let a of tabAssistant">
                           <th scope="row">{{a.id}}</th>
-                          <td>{{a.user?.nom}}</td>
-                          <td>{{a.user?.prenom}}</td>
-                          <td>{{a.user?.email}}</td>
+                          <td>{{a.user.nom}}</td>
+                          <td>{{a.user.prenom}}</td>
+                          <td>{{a.user.email}}</td>
                           <td>{{a.code_Assistant}}</td>
                           <td>
                             <button type="button" class="btn btn-outline-primary btn-sm me-2 border-0 fa-lg" [routerLink]="['/editAssistant', a.id]">
@@ -223,9 +223,9 @@
           <tbody>
             <tr *ngFor="let a of tabPatient">
               <th scope="row">{{a.id}}</th>
-              <td>{{a.user?.nom}}</td>
-              <td>{{a.user?.prenom}}</td>
-              <td>{{a.user?.email}}</td>
+              <td>{{a.user.nom}}</td>
+              <td>{{a.user.prenom}}</td>
+              <td>{{a.user.email}}</td>
               <td>{{a.code_Patient}}</td>
               <td>
                 <button type="button" class="btn btn-outline-primary btn-sm me-2 border-0 fa-lg" [routerLink]="['/editPatient', a.id]">
