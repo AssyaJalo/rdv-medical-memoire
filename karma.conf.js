@@ -7,7 +7,7 @@ module.exports = function (config) {
       preprocessors: {
         'src/test.ts': ['@angular-devkit/build-angular']
       },
-      browsers: ['ChromeHeadless'],
+      browsers: ['Chrome'],
       mime: {
         'text/javascript': ['js', 'mjs']
       },
